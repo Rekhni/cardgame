@@ -1,0 +1,93 @@
+
+body {
+    background: #432fda
+}
+
+/* * {
+    margin: 0;
+    padding: 0;
+  } */
+
+.main_page {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.center {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+  }
+
+.levels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 120px;
+    width: 580px;
+    height: 559px;
+    background-color:#C2F5FF;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+.levels_title {
+    font-family: 'StratosSkyeng', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    width: 240px;
+    text-align: center;
+    margin-top: 100px;
+    color: #004980;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    line-height: 48px;
+}
+
+.levels_numbers {
+    display: flex;
+    gap: 40px;
+    text-align: center;
+}
+
+.number {
+    background-color: white;
+    width: 96px;
+    height: 97px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    border-radius: 10px;
+    border-color: transparent;
+    color: #0080C1;
+    font-family: 'StratosSkyeng', sans-serif;
+}
+
+.number:hover {
+    background-color: #0080C1;
+    color: white;
+    transform: scale(1.01);
+    transition: all 0.5s;
+}
+
+.levels_start__button {
+    font-family: 'StratosSkyeng', sans-serif;
+    background: #7AC100;
+    border-radius: 12px;
+    border-color: transparent;
+    width: 246px;
+    height: 50px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 40px;
+    color: white;
+}
+
+.levels_start__button:hover {
+    background-color: #0080C1;
+    color: white;
+    transform: scale(1.01);
+    transition: all 0.5s;
+}
