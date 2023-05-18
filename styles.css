@@ -1,6 +1,26 @@
+@font-face {
+    font-family: "stratosskyengweb";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/stratosskyengweb-regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "stratosskyengweb";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/stratosskyengweb-regular.woff") format("woff");
+  }
+
+html {
+   font-size: 16px;
+}
+
 
 body {
-    background: #432fda
+    font-family: "stratosskyengweb";
+    background-color: #004980;
+    margin: 0;
+    padding: 0;
 }
 
 /* * {
@@ -9,9 +29,13 @@ body {
   } */
 
 .main_page {
+    margin: auto;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-content: center;
+    height: 100vh;
+    max-width: 1024px;
+    max-height: 100vh;
 }
 
 .center {
@@ -20,74 +44,80 @@ body {
   }
 
 .levels {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 120px;
-    width: 580px;
-    height: 559px;
-    background-color:#C2F5FF;
-    border-radius: 10px;
-    gap: 20px;
+    box-sizing: border-box;
+    padding: 52px 70px 50px;
+    text-align: center;
+    margin: auto auto;
+    width: 480px;
+    height: 459px;
+    background-color: #C2F5FF;
+    border-radius: 12px;
 }
 
 .levels_title {
-    font-family: 'StratosSkyeng', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 50px;
-    width: 240px;
-    text-align: center;
-    margin-top: 100px;
+    margin: 0;
+    font-size: 2.5rem;
+    line-height: 120%;
     color: #004980;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    line-height: 48px;
 }
 
 .levels_numbers {
+    margin-top: 44px;
+    margin-bottom: 67px;
     display: flex;
-    gap: 40px;
-    text-align: center;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
 .number {
-    background-color: white;
-    width: 96px;
-    height: 97px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-    border-radius: 10px;
-    border-color: transparent;
+    height: 98px;
+    width: 98px;
+    border-radius: 12px;
+    border: none;
     color: #0080C1;
-    font-family: 'StratosSkyeng', sans-serif;
+    font-size: 4rem;
+    background-color: #fff;
+    outline: 3px solid transparent;
+    transition: all .3s;
 }
 
 .number:hover {
-    background-color: #0080C1;
-    color: white;
-    transform: scale(1.01);
-    transition: all 0.5s;
+    transform: scale(1.1);
+    outline-color: #0080C1;
+    cursor: pointer;
 }
 
-.levels_start__button {
-    font-family: 'StratosSkyeng', sans-serif;
-    background: #7AC100;
-    border-radius: 12px;
-    border-color: transparent;
+.number:active {
+    color:#0071a9;
+    background-color: #e6e6e6;
+}
+
+.number_checked {
+    transform: scale(1.1);
+    outline-color: #0071a9;
+}
+
+
+button {
     width: 246px;
     height: 50px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-    margin-top: 40px;
-    color: white;
+    background: #7AC100;
+    border-radius: 12px;
+    font-family: inherit;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
 }
 
-.levels_start__button:hover {
+.button:hover {
     background-color: #0080C1;
     color: white;
+    cursor: pointer;
     transform: scale(1.01);
     transition: all 0.5s;
 }
+
+.button:active {
+    background-color: #71b101;
+    color: #cfcfcf;
+  }
