@@ -1,4 +1,6 @@
 
+
+
 const renderApp = (mode = 0) => {
     const appEl = document.querySelector('.main_page');
 
@@ -8,7 +10,7 @@ const renderApp = (mode = 0) => {
     else if (mode ==='levels') {
         appEl.style.flexDirection = 'column';
         appEl.innerHTML = `
-        <p>Cложность игры уровень: ${localStorage.getItem('cardgame_level')}</p>
+        <h1 class="level_result_title">Cложность игры уровень: ${localStorage.getItem('cardgame_level')}</h1>
         <button class="button">Начать заново</button>
         `;
 
@@ -25,16 +27,25 @@ const renderApp = (mode = 0) => {
                 <h2 class="levels_title">
                     Выбери    сложность
                 </h2>
-                <div class="levels_numbers">
-                    <button class="number">1</button> 
-                    <button class="number">2</button> 
-                    <button class="number">3</button> 
+                <div id ="form">
+                    <label class="level_number">
+                        <input type="radio" name="level" value="1" />
+                        1
+                    </label>
+                    <label class="level_number">
+                        <input type="radio" name="level" value="2" />
+                        2
+                    </label>
+                    <label class="level_number">
+                        <input type="radio" name="level" value="3" />
+                         3
+                    </label>
                 </div>
                 <button class="button start_button">Старт</button>
             </div>
         `;
 
-        const levelButtons = appEl.querySelectorAll('.number');
+        const levelButtons = appEl.querySelectorAll('.level_number');
         localStorage.setItem('cardgame_level', '1');
 
         for (let levelButton of levelButtons) {
@@ -55,3 +66,6 @@ const renderApp = (mode = 0) => {
 
 
 renderApp(localStorage.getItem('cardgame_result'));
+
+
+
