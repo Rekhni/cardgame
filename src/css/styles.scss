@@ -1,0 +1,55 @@
+@font-face {
+    font-family: stratosskyengweb;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/stratosskyengweb-regular.woff2") format("woff2");
+}
+@font-face {
+    font-family: stratosskyengweb;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/stratosskyengweb-regular.woff") format("woff");
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "stratosskyengweb, sans-serif";
+    background-color: #004980;
+    margin: 0;
+    padding: 0;
+}
+
+
+.main_page {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-width: 1024px;
+    max-height: 100vh;
+}
+
+.button {
+    width: 246px;
+    height: 50px;
+    background: #7ac100;
+    border-radius: 12px;
+    font-family: inherit;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+
+    &:hover {
+        opacity: 0.85;
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: #71b101;
+        color: #cfcfcf;
+    }
+}

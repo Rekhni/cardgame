@@ -1,23 +1,22 @@
 @font-face {
-    font-family: "stratosskyengweb";
+    font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/stratosskyengweb-regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "stratosskyengweb";
+    src: url('../fonts/stratosskyengweb-regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/stratosskyengweb-regular.woff") format("woff");
-  }
-
-html {
-   font-size: 16px;
+    src: url('../fonts/stratosskyengweb-regular.woff') format('woff');
 }
 
+html {
+    font-size: 16px;
+}
 
 body {
-    font-family: "stratosskyengweb";
+    font-family: stratosskyengweb, sans-serif;
     background-color: #004980;
     margin: 0;
     padding: 0;
@@ -59,21 +58,19 @@ body {
     color: #cfcfcf;
 }
 
-
 .levels {
     box-sizing: border-box;
     padding: 52px 70px 50px;
     text-align: center;
-    margin: auto auto;
+    margin: auto;
     width: 480px;
     height: 459px;
-    background-color: #C2F5FF;
+    background-color: #c2f5ff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
 
 .levels_title {
     margin: 0;
@@ -87,29 +84,28 @@ body {
     justify-content: space-between;
 }
 
-.level_number {
+.levels_number {
     height: 98px;
     width: 98px;
     border-radius: 12px;
     border: none;
-    color: #0080C1;
+    color: #0080c1;
     font-size: 4rem;
     background-color: #fff;
     outline: 3px solid transparent;
-    transition: all .3s;
+    transition: all 0.3s;
     display: flex;
     flex-direction: column;
 }
 
-
-.level_number:hover {
+.levels_number:hover {
     transform: scale(1.1);
-    outline-color: #0080C1;
+    outline-color: #0080c1;
     cursor: pointer;
 }
 
 .level_number:active {
-    color:#0071a9;
+    color: #0071a9;
     background-color: #e6e6e6;
 }
 
@@ -118,16 +114,17 @@ body {
     outline-color: #0071a9;
 }
 
-input[type="radio"] {
+input[type='radio'] {
     /* Add if not using autoprefixer */
-    -webkit-appearance: none;
     appearance: none;
+
     /* For iOS < 15 to remove gradient background */
     background-color: #fff;
+
     /* Not removed via appearance */
     margin: 0;
     text-align: center;
-  }
+}
 
 .game {
     box-sizing: border-box;
@@ -165,11 +162,9 @@ input[type="radio"] {
     line-height: 4.5rem;
 }
 
-
 .level_result_title {
     color: white;
 }
-
 
 .game__field {
     margin-top: 35px;
@@ -199,7 +194,6 @@ input[type="radio"] {
     padding: 6px;
     background-color: #fff;
 }
-
 
 .card__back {
     z-index: 1;
@@ -259,5 +253,3 @@ input[type="radio"] {
     width: 10px;
     height: 10px;
 }
-
-

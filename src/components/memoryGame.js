@@ -5,19 +5,19 @@ const suitsObj = {
     '♣': 'clubs.svg',
     '♥': 'hearts.svg',
     '♦': 'diamonds.svg',
-}
+};
 
 // assigning values and keys to first and second clicked cards
 
 let firstCard = {
     value: 0,
     suit: 0,
-}
+};
 
 let secondCard = {
     value: 0,
     suit: 0,
-}
+};
 
 // rendering the gamefield itself
 
@@ -166,4 +166,3 @@ function startTimer() {
     const timerInterval = setInterval(setTime, 1000);
     setTimeout(clearInterval, 10000, timerInterval);
 }
-
