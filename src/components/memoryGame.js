@@ -1,35 +1,29 @@
 import { Deck } from './deck.js';
 import { renderApp } from '../index.js';
 
-let countDisclosedCards = 0;
+let countOpenedCards = 0;
 
-// assigning values and keys to first and second clicked cards
-
-// rendering the gamefield itself
-
-export function renderGameField(level = 1) {
+export function renderGameField(difficulty = 1) {
     const gameField = document.querySelector('.game__field');
     clearInterval(window.cardGame.timerInterval);
     clearInterval(window.cardGame.countdownInterval);
-    clearInterval(window.cardGame.flipTimeout);
+    clearTimeout(window.cardGame.flipTimeout);
 
     const deck = new Deck();
     const cardPresets = [3, 3, 6, 9];
     window.cardGame.currentDeck = deck
         .shuffle()
-        .cut(cardPresets[+level])
+        .cut(cardPresets[+difficulty])
         .double()
         .shuffle()
         .render(gameField);
-
+    console.log(deck);
     window.cardGame.flipTimeout = setTimeout(() => {
         flipCards();
         addCardListener();
     }, 5000);
     countdown();
 }
-
-// adding function which enables to click on a certain card
 
 function addCardListener() {
     const cards = document.body.querySelectorAll('.card');
@@ -49,40 +43,38 @@ function addCardListener() {
         face.classList.add('card__flip-face1');
         back.classList.add('card__flip-back1');
 
-        setTimeout(checkRules, 800);
+        setTimeout(checkConditions, 800);
 
-        function checkRules() {
+        function checkConditions() {
             if (!window.cardGame.firstCard.value) {
                 window.cardGame.firstCard = {
                     value: card.dataset.value,
                     suit: card.dataset.suit,
                 };
-                countDisclosedCards++;
+                countOpenedCards++;
                 card.removeEventListener('click', compareCards);
             } else {
                 window.cardGame.secondCard = {
                     value: card.dataset.value,
                     suit: card.dataset.suit,
                 };
-                countDisclosedCards++;
+                countOpenedCards++;
                 card.removeEventListener('click', compareCards);
-
+                // Условие проигрыша
                 if (
                     window.cardGame.firstCard.value !==
                         window.cardGame.secondCard.value ||
                     window.cardGame.firstCard.suit !==
                         window.cardGame.secondCard.suit
                 ) {
-                    checkAndDisplayResult('Игра закончилась');
+                    checkAndDisplayResult('проиграли');
                 }
                 window.cardGame.firstCard = resetCard();
                 window.cardGame.secondCard = resetCard();
             }
-
-            if (
-                countDisclosedCards === window.cardGame.currentDeck.cards.length
-            ) {
-                checkAndDisplayResult('Выиграли');
+            // Условие выигрыша
+            if (countOpenedCards === window.cardGame.currentDeck.cards.length) {
+                checkAndDisplayResult('выиграли');
             }
         }
     }
@@ -90,13 +82,11 @@ function addCardListener() {
 
 function checkAndDisplayResult(result) {
     clearInterval(window.cardGame.timerInterval);
-    countDisclosedCards = 0;
+    countOpenedCards = 0;
     const timerValue = document.querySelector('.game__digits').textContent;
-    window.cardGame.result = 'result';
-    renderApp(window.cardGame.result, timerValue, result);
+    window.cardGame.status = 'result';
+    renderApp(window.cardGame.status, timerValue, result);
 }
-
-// function enabling to flip clicked card
 
 function flipCards() {
     const cards = document.body.querySelectorAll('.card');
@@ -109,8 +99,6 @@ function flipCards() {
         back.classList.add('card__flip-back');
     }
 }
-
-// function enabling to countdown until start of the game
 
 function countdown() {
     const timer = document.querySelector('.game__timer');
@@ -131,8 +119,6 @@ function countdown() {
     }, 1000);
 }
 
-// function serving to display the duration of game
-
 function startTimer() {
     const timerDigits = document.querySelector('.game__digits');
     let time = 0;
@@ -143,7 +129,6 @@ function startTimer() {
         const seconds = ('00' + (time % 60)).slice(-2);
         timerDigits.textContent = `${minutes}.${seconds}`;
     }
-
     window.cardGame.timerInterval = setInterval(setTime, 1000);
     setTimeout(clearInterval, 600000, window.cardGame.timerInterval);
 }

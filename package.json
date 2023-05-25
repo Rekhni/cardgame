@@ -4,13 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "NODE_ENV=production webpack",
         "start": "http-server -p 3004",
         "format": "prettier --write ./src/",
         "lint:js": "eslint ./src/**/*.js --fix",
         "lint:css": "stylelint ./src/css/**/*.css --fix",
         "prepare": "husky install",
         "lint": "npm run lint:js && npm run lint:css",
+        "build": "webpack",
         "startServer": "webpack-dev-server --open"
     },
     "repository": {
@@ -39,6 +39,7 @@
         "stylelint-config-prettier": "^9.0.3",
         "stylelint-config-standard": "^25.0.0",
         "stylelint-prettier": "^2.0.0",
+        "webpack": "^5.84.0",
         "webpack-cli": "^5.1.1",
         "webpack-dev-server": "^4.15.0"
     }

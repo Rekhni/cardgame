@@ -3,11 +3,18 @@ import clubs from '../img/clubs.svg';
 import diamonds from '../img/diamonds.svg';
 import hearts from '../img/hearts.svg';
 
+// const suitsBackground = {
+//     '♠': spades,
+//     '♣': clubs,
+//     '♥': hearts,
+//     '♦': diamonds,
+// };
+
 export class Deck {
     constructor() {
         this.SUITS = ['♠', '♣', '♥', '♦'];
         this.VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-        this.suitsObj = {
+        this.suitsBackground = {
             '♠': spades,
             '♣': clubs,
             '♥': hearts,
@@ -21,16 +28,16 @@ export class Deck {
                     html: `
                     <div data-value=${value} data-suit=${suit} class="card" >
                         <div class="card__back"></div>
-                        <div class="card__face" style="background: url('${this.suitsObj[suit]}') center center no-repeat, rgb(255, 255, 255);">
+                        <div class="card__face" style="background: url('${this.suitsBackground[suit]}') center center no-repeat, rgb(255, 255, 255);">
                             <div class="card__top">    
                                 <div class="card__value">${value}
                                 </div>
-                                <img class="card__suit" src="${this.suitsObj[suit]}" alt="suit">
+                                <img class="card__suit" src="${this.suitsBackground[suit]}" alt="suit">
                             </div>
                             <div class="card__bottom">    
                                 <div class="card__value">${value}
                                 </div>
-                                <img class="card__suit" src="${this.suitsObj[suit]}" alt="suit">
+                                <img class="card__suit" src="${this.suitsBackground[suit]}" alt="suit">
                             </div>
                         </div>
                     </div>
@@ -41,14 +48,10 @@ export class Deck {
         }, []);
     }
 
-    // shuffling pile of cards
-
     shuffle() {
         for (let i = this.cards.length - 1; i > 0; i--) {
             const newIndex = Math.floor(Math.random() * (i + 1));
-            //   const oldValue = this.cards[newIndex]
-            //   this.cards[newIndex] = this.cards[i]
-            //   this.cards[i] = oldValue
+
             [this.cards[i], this.cards[newIndex]] = [
                 this.cards[newIndex],
                 this.cards[i],
@@ -57,13 +60,10 @@ export class Deck {
         return this;
     }
 
-    // cutting the array until 3
-    cut() {
-        this.cards = this.cards.slice(0, 3);
+    cut(length = 3) {
+        this.cards = this.cards.slice(0, length);
         return this;
     }
-
-    // duplicating that cutted amount of cards
 
     double() {
         this.cards = [this.cards, ...this.cards].flat();

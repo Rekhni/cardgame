@@ -22,11 +22,6 @@ body {
     padding: 0;
 }
 
-/* * {
-    margin: 0;
-    padding: 0;
-  } */
-
 .main_page {
     margin: auto;
     display: flex;
@@ -37,7 +32,7 @@ body {
     max-height: 100vh;
 }
 
-.button {
+.btn {
     width: 246px;
     height: 50px;
     background: #7ac100;
@@ -48,17 +43,17 @@ body {
     border: none;
 }
 
-.button:hover {
+.btn:hover {
     opacity: 0.85;
     cursor: pointer;
 }
 
-.button:active {
+.btn:active {
     background-color: #71b101;
     color: #cfcfcf;
 }
 
-.levels {
+.difficulty {
     box-sizing: border-box;
     padding: 52px 70px 50px;
     text-align: center;
@@ -67,24 +62,24 @@ body {
     height: 459px;
     background-color: #c2f5ff;
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.levels_title {
+.difficulty__heading {
     margin: 0;
     font-size: 2.5rem;
     line-height: 120%;
     color: #004980;
 }
 
-#form {
+.difficulty__selection {
+    margin-top: 44px;
+    margin-bottom: 67px;
     display: flex;
     justify-content: space-between;
+    gap: 1.5rem;
 }
 
-.levels_number {
+.difficulty__selection-item {
     height: 98px;
     width: 98px;
     border-radius: 12px;
@@ -94,36 +89,22 @@ body {
     background-color: #fff;
     outline: 3px solid transparent;
     transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
 }
 
-.levels_number:hover {
+.difficulty__selection-item:hover {
     transform: scale(1.1);
     outline-color: #0080c1;
     cursor: pointer;
 }
 
-.level_number:active {
+.difficulty__selection-item:active {
     color: #0071a9;
     background-color: #e6e6e6;
 }
 
-.number_checked {
+.difficulty__selection-item_checked {
     transform: scale(1.1);
     outline-color: #0071a9;
-}
-
-input[type='radio'] {
-    /* Add if not using autoprefixer */
-    appearance: none;
-
-    /* For iOS < 15 to remove gradient background */
-    background-color: #fff;
-
-    /* Not removed via appearance */
-    margin: 0;
-    text-align: center;
 }
 
 .game {
@@ -160,10 +141,6 @@ input[type='radio'] {
     grid-column: 1/-1;
     font-size: 4rem;
     line-height: 4.5rem;
-}
-
-.level_result_title {
-    color: white;
 }
 
 .game__field {
@@ -253,7 +230,6 @@ input[type='radio'] {
     width: 10px;
     height: 10px;
 }
-
 
 .shadow {
     position: absolute;

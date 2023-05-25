@@ -2,13 +2,13 @@
     font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/stratosskyengweb-regular.woff2") format("woff2");
+    src: url('../fonts/stratosskyengweb-regular.woff2') format('woff2');
 }
 @font-face {
     font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url("../fonts/stratosskyengweb-regular.woff") format("woff");
+    src: url('../fonts/stratosskyengweb-regular.woff') format('woff');
 }
 
 html {
@@ -16,14 +16,13 @@ html {
 }
 
 body {
-    font-family: "stratosskyengweb, sans-serif";
+    font-family: stratosskyengweb;
     background-color: #004980;
     margin: 0;
     padding: 0;
 }
 
-
-.main_page {
+.app-container {
     margin: auto;
     display: flex;
     align-items: center;
@@ -33,7 +32,7 @@ body {
     max-height: 100vh;
 }
 
-.button {
+.btn {
     width: 246px;
     height: 50px;
     background: #7ac100;
@@ -53,3 +52,7 @@ body {
         color: #cfcfcf;
     }
 }
+
+@import 'difficulty';
+@import 'game';
+@import 'result';
