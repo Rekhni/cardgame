@@ -52,7 +52,11 @@ body {
     height: 459px;
     background-color: #C2F5FF;
     border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 
 .levels_title {
     margin: 0;
@@ -61,15 +65,12 @@ body {
     color: #004980;
 }
 
-.levels_numbers {
-    margin-top: 44px;
-    margin-bottom: 67px;
+#form {
     display: flex;
     justify-content: space-between;
-    gap: 1.5rem;
 }
 
-.number {
+.level_number {
     height: 98px;
     width: 98px;
     border-radius: 12px;
@@ -79,15 +80,18 @@ body {
     background-color: #fff;
     outline: 3px solid transparent;
     transition: all .3s;
+    display: flex;
+    flex-direction: column;
 }
 
-.number:hover {
+
+.level_number:hover {
     transform: scale(1.1);
     outline-color: #0080C1;
     cursor: pointer;
 }
 
-.number:active {
+.level_number:active {
     color:#0071a9;
     background-color: #e6e6e6;
 }
@@ -97,6 +101,16 @@ body {
     outline-color: #0071a9;
 }
 
+input[type="radio"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    text-align: center;
+  }
 
 button {
     width: 246px;
@@ -107,6 +121,7 @@ button {
     color: #fff;
     font-size: 1.5rem;
     border: none;
+    margin-left: 40px;
 }
 
 .button:hover {
@@ -121,3 +136,21 @@ button {
     background-color: #71b101;
     color: #cfcfcf;
   }
+
+.level_result_title {
+    color: white;
+}
+
+
+.game_board {
+    margin-top: 35px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, 95px);
+}
+
+.card-container {
+	perspective: 1000px;
+	position: relative;
+	margin: 1%;
+}

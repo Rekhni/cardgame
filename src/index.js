@@ -1,5 +1,5 @@
-
-
+import { renderGameField } from './components/memoryGame.js';
+window.cardGame = {};
 
 const renderApp = (mode = 0) => {
     const appEl = document.querySelector('.main_page');
@@ -10,15 +10,34 @@ const renderApp = (mode = 0) => {
     else if (mode ==='levels') {
         appEl.style.flexDirection = 'column';
         appEl.innerHTML = `
-        <h1 class="level_result_title">Cложность игры уровень: ${localStorage.getItem('cardgame_level')}</h1>
-        <button class="button">Начать заново</button>
+        <div class="game">
+            <div class="game__header">
+                <div class="game__timer">
+                    <div class="game__min-sec">min</div>
+                    <div class="game__min-sec">sec</div>
+                    <div class="game__digits">00.00</div>
+                </div>
+                <button class="button again_button">Начать заново</button>
+            </div>
+            <div class="game__field">
+            </div>
+        </div>
+        <p>Сложность ${window.cardGame.level}</p>
+        <button class="button back_button">Назад</button>
         `;
 
-        const startAgainBtn = appEl.querySelector('.button');
-        startAgainBtn.addEventListener('click', () => {
-        localStorage.removeItem('cardgame_result');
-        renderApp(localStorage.getItem('cardgame_result'));
+        const goBackButton = appEl.querySelector('.back_button');
+        goBackButton.addEventListener('click', () => {
+            window.cardGame.result = null;
+            renderApp(window.cardGame.result);
         })
+
+        const startAgainButton = appEl.querySelector('.button');
+        startAgainButton.addEventListener('click', () => {
+        renderApp(window.cardGame.result);
+        });
+
+        renderGameField(window.cardGame.result);
     }
 
     else {
@@ -46,26 +65,26 @@ const renderApp = (mode = 0) => {
         `;
 
         const levelButtons = appEl.querySelectorAll('.level_number');
-        localStorage.setItem('cardgame_level', '1');
+        window.cardGame.level = '1';
 
         for (let levelButton of levelButtons) {
             levelButton.addEventListener('click', () => {
                 levelButtons.forEach((el) => el.classList.remove('.number_checked'));
                 levelButton.classList.add('.number_checked');
-                localStorage.setItem('cardgame_level', levelButton.textContent);
+                window.cardGame.level = levelButton.textContent; 
             })
         }
 
         const startButton = document.querySelector('.start_button');
         startButton.addEventListener('click', () => {
-            localStorage.setItem('cardgame_result', 'levels');
-            renderApp(localStorage.getItem('cardgame_result'));
-        })
+            window.cardGame.result = 'levels';
+            renderApp(window.cardGame.result);
+        });
     }
 }
 
 
-renderApp(localStorage.getItem('cardgame_result'));
+renderApp(window.cardGame.result);
 
 
 
