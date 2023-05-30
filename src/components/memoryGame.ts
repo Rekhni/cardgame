@@ -22,11 +22,11 @@ export function renderGameField(difficulty = 1) {
 function addCardListener() {
     const cards = Array.from(document.body.querySelectorAll('.card'));
 
-    for (let card of cards) {
+    for (const card of cards) {
         card.addEventListener('click', compareCards);
     }
 
-    function compareCards(event: { currentTarget: any; }) {
+    function compareCards(event: { currentTarget: any }) {
         const card = event.currentTarget;
         const face = card.querySelector('.card__face');
         const back = card.querySelector('.card__back');

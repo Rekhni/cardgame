@@ -6,7 +6,7 @@ import hearts from '../img/hearts.svg';
 export class Deck {
     SUITS: string[];
     VALUES: string[];
-    suitsBackground: {  [key: string]: any };
+    suitsBackground: { [key: string]: any };
     cardsNodeList: NodeList | null;
     cards: { value: string; suit: string; html: string }[];
     cardPresets: number[];
@@ -26,7 +26,7 @@ export class Deck {
                 result: { value: string; suit: string; html: string }[],
                 value: string
             ) => {
-                for (let suit of this.SUITS) {
+                for (const suit of this.SUITS) {
                     result.push({
                         value: value,
                         suit: suit,
@@ -82,7 +82,7 @@ export class Deck {
     }
 
     render(element = document.body) {
-        for (let card of this.cards) {
+        for (const card of this.cards) {
             element.innerHTML = element.innerHTML += card.html;
         }
         this.cardsNodeList = document.querySelectorAll('.card');
