@@ -4,23 +4,32 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "format": "prettier --write .",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "http-server -p 3004",
+        "format": "prettier --write ./src/",
         "lint:js": "eslint ./src/**/*.js --fix",
-        "lint:css": "stylelint ./src/css/**/*.css",
-        "lint": "npm run lint:js && npm run lint:css",
-        "prepare": "husky install" 
+        "lint:css": "stylelint ./src/css/**/*.css --fix",
+        "prepare": "husky install",
+        "lint": "npm run lint:js && npm run lint:css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "(https://github.com/Rekhni/cardgame.git)"
     },
     "author": "Reha",
     "license": "ISC",
+    "dependencies": {
+        "http-server": "^14.1.1",
+        "lodash": "^4.17.21"
+    },
     "devDependencies": {
-        "axios": "^1.4.0",
-        "eslint": "^8.40.0",
+        "eslint": "^8.41.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.3",
         "prettier": "^2.8.8",
-        "stylelint": "^14.16.1",
-        "stylelint-config-prettier": "^9.0.5",
+        "stylelint": "^14.8.2",
+        "stylelint-config-prettier": "^9.0.3",
         "stylelint-config-standard": "^25.0.0",
         "stylelint-prettier": "^2.0.0"
     }

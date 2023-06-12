@@ -1,7 +1,6 @@
 const SUITS = ['♠', '♣', '♥', '♦'];
 const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
-
 // merging two arrays of values and suits into one array
 
 const CARDS = VALUES.reduce((result, value) => {
@@ -13,7 +12,6 @@ const CARDS = VALUES.reduce((result, value) => {
     }
     return result;
 }, []);
-
 
 export class Deck {
     constructor() {
