@@ -1,52 +1,42 @@
-import { Deck } from './deck.js';
-import { renderApp } from '../index.js';
+import { Deck } from './deck';
+import { renderApp } from '../index';
 
 let countOpenedCards = 0;
 
 export function renderGameField(difficulty = 1) {
-    const gameField = document.querySelector('.game__field');
+    const gameField = document.querySelector('.game__field') as HTMLElement;
+    const deck = new Deck();
     clearInterval(window.cardGame.timerInterval);
     clearInterval(window.cardGame.countdownInterval);
     clearTimeout(window.cardGame.flipTimeout);
+    countOpenedCards = 0;
 
-    const deck = new Deck();
-    const cardPresets = [3, 3, 6, 9];
-    window.cardGame.currentDeck = deck
-        .shuffle()
-        .cut(cardPresets[+difficulty])
-        .double()
-        .shuffle()
-        .render(gameField);
-    console.log(deck);
+    window.cardGame.currentDeck = deck.prepare(difficulty).render(gameField);
     window.cardGame.flipTimeout = setTimeout(() => {
-        flipCards();
+        deck.flipAllCards();
         addCardListener();
     }, 5000);
     countdown();
 }
 
 function addCardListener() {
-    const cards = document.body.querySelectorAll('.card');
-    const resetCard = () => {
-        return { value: 0, suit: 0 };
-    };
+    const cards = Array.from(document.body.querySelectorAll('.card'));
 
     for (let card of cards) {
         card.addEventListener('click', compareCards);
     }
 
-    function compareCards(event) {
-        const card = event.srcElement.closest('.card');
+    function compareCards(event: { currentTarget: any; }) {
+        const card = event.currentTarget;
         const face = card.querySelector('.card__face');
         const back = card.querySelector('.card__back');
+        const resetCard = () => ({ value: '0', suit: '0' });
 
         face.classList.add('card__flip-face1');
         back.classList.add('card__flip-back1');
 
-        setTimeout(checkConditions, 800);
-
-        function checkConditions() {
-            if (!window.cardGame.firstCard.value) {
+        (function checkConditions() {
+            if (window.cardGame.firstCard.value === '0') {
                 window.cardGame.firstCard = {
                     value: card.dataset.value,
                     suit: card.dataset.suit,
@@ -67,49 +57,40 @@ function addCardListener() {
                     window.cardGame.firstCard.suit !==
                         window.cardGame.secondCard.suit
                 ) {
-                    checkAndDisplayResult('проиграли');
+                    setTimeout(checkAndDisplayResult, 800, 'проиграли');
                 }
                 window.cardGame.firstCard = resetCard();
                 window.cardGame.secondCard = resetCard();
             }
             // Условие выигрыша
             if (countOpenedCards === window.cardGame.currentDeck.cards.length) {
-                checkAndDisplayResult('выиграли');
+                setTimeout(checkAndDisplayResult, 800, 'выиграли');
             }
-        }
+        })();
     }
 }
 
-function checkAndDisplayResult(result) {
+function checkAndDisplayResult(result: string | undefined) {
     clearInterval(window.cardGame.timerInterval);
     countOpenedCards = 0;
-    const timerValue = document.querySelector('.game__digits').textContent;
+    const timerValue = (document.querySelector('.game__digits') as HTMLElement)
+        .textContent;
     window.cardGame.status = 'result';
     renderApp(window.cardGame.status, timerValue, result);
 }
 
-function flipCards() {
-    const cards = document.body.querySelectorAll('.card');
-
-    for (let card of cards) {
-        const face = card.querySelector('.card__face');
-        const back = card.querySelector('.card__back');
-
-        face.classList.add('card__flip-face');
-        back.classList.add('card__flip-back');
-    }
-}
-
 function countdown() {
-    const timer = document.querySelector('.game__timer');
-    const countdownEl = document.createElement('div');
+    const timer = document.querySelector('.game__timer') as HTMLElement;
+    const countdownEl = document.createElement('div') as HTMLDivElement;
     countdownEl.classList.add('game__countdown');
     countdownEl.textContent = '5';
     timer.after(countdownEl);
 
     window.cardGame.countdownInterval = setInterval(() => {
-        if (countdownEl.textContent > 1) {
-            countdownEl.textContent -= 1;
+        if (Number(countdownEl.textContent) > 1) {
+            countdownEl.textContent = String(
+                Number(countdownEl.textContent) - 1
+            );
         } else {
             clearInterval(window.cardGame.countdownInterval);
             countdownEl.textContent = 'Start';
@@ -120,15 +101,16 @@ function countdown() {
 }
 
 function startTimer() {
-    const timerDigits = document.querySelector('.game__digits');
+    const timerDigits = document.querySelector('.game__digits') as HTMLElement;
     let time = 0;
 
     function setTime() {
         time += 1;
-        const minutes = ('00' + Math.round(time / 60)).slice(-2);
+        const minutes = ('00' + Math.floor(time / 60)).slice(-2);
         const seconds = ('00' + (time % 60)).slice(-2);
         timerDigits.textContent = `${minutes}.${seconds}`;
     }
+
     window.cardGame.timerInterval = setInterval(setTime, 1000);
     setTimeout(clearInterval, 600000, window.cardGame.timerInterval);
 }
