@@ -1,4 +1,4 @@
-.levels {
+.difficulty {
     box-sizing: border-box;
     padding: 52px 70px 50px;
     text-align: center;
@@ -7,41 +7,47 @@
     height: 459px;
     background-color: #c2f5ff;
     border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-    &_title {
+    &__heading {
         margin: 0;
         font-size: 2.5rem;
         line-height: 120%;
         color: #004980;
     }
 
-    &_number {
-        height: 98px;
-        width: 98px;
-        border-radius: 12px;
-        border: none;
-        color: #0080c1;
-        font-size: 4rem;
-        background-color: #fff;
-        outline: 3px solid transparent;
-        transition: all 0.3s;
+    &__selection {
+        margin-top: 44px;
+        margin-bottom: 67px;
         display: flex;
-        flex-direction: column;
-    }
+        justify-content: space-between;
+        gap: 1.5rem;
 
-    &_number:hover {
-        transform: scale(1.1);
-        outline-color: #0080c1;
-        cursor: pointer;
-    }
-    
-    &_number:active {
-        color: #0071a9;
-        background-color: #e6e6e6;
-    }
+        &-item {
+            height: 98px;
+            width: 98px;
+            border-radius: 12px;
+            border: none;
+            color: #0080c1;
+            font-size: 4rem;
+            background-color: #fff;
+            outline: 3px solid transparent;
+            transition: all 0.3s;
 
+            &:hover {
+                transform: scale(1.1);
+                outline-color: #0080c1;
+                cursor: pointer;
+            }
+
+            &:active {
+                color: #0071a9;
+                background-color: #e6e6e6;
+            }
+
+            &_checked {
+                transform: scale(1.1);
+                outline-color: #0071a9;
+            }
+        }
+    }
 }
-

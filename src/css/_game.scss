@@ -28,7 +28,7 @@
     }
 
     &__digits {
-        grid-column: 1/-1;
+        grid-column: 1 / -1;
         font-size: 4rem;
         line-height: 4.5rem;
     }
@@ -38,5 +38,88 @@
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, 95px);
+    }
+}
+
+.card {
+    width: 95px;
+    height: 133px;
+    color: black;
+    letter-spacing: -4px;
+    transition: all 1s;
+    position: relative;
+    cursor: pointer;
+
+    &__face {
+        border-radius: 0.25rem;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6px;
+        background-color: #fff;
+    }
+
+    &__back {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 95px;
+        height: 133px;
+        background: url(../img/back.png);
+        transform: perspective(600px) rotateY(180deg);
+        backface-visibility: hidden;
+    }
+
+    &__flip {
+        &-back {
+            transition: all 1s;
+            backface-visibility: hidden;
+            transform: perspective(600px) rotateY(0deg);
+
+            &1 {
+                transition: all 1s;
+                backface-visibility: hidden;
+                transform: perspective(600px) rotateY(180deg);
+            }
+        }
+
+        &-face {
+            transition: all 1s;
+            backface-visibility: hidden;
+            transform: perspective(600px) rotateY(-180deg);
+
+            &1 {
+                transition: all 1s;
+                backface-visibility: hidden;
+                transform: perspective(600px) rotateY(0deg);
+            }
+        }
+    }
+
+    &__top {
+        width: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__bottom {
+        transform: rotate(180deg);
+    }
+
+    &__value {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
+
+    &__suit {
+        margin-left: 3px;
+        display: block;
+        width: 10px;
+        height: 10px;
     }
 }

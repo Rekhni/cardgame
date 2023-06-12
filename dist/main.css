@@ -1,14 +1,17 @@
+/*!**********************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/css/styles.css ***!
+  \**********************************************************************/
 @font-face {
     font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/stratosskyengweb-regular.woff2') format('woff2');
+    src: url(ce93393e831d32412096.woff2) format('woff2');
 }
 @font-face {
     font-family: stratosskyengweb;
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/stratosskyengweb-regular.woff') format('woff');
+    src: url(d7d99bd522cf2d77ce4a.woff) format('woff');
 }
 
 html {
@@ -179,7 +182,7 @@ body {
     left: 0;
     width: 95px;
     height: 133px;
-    background: url('../img/back.png');
+    background: url(e43bb962bdb0617fffe4.png);
     transform: perspective(600px) rotateY(180deg);
     backface-visibility: hidden;
 }
@@ -265,3 +268,5 @@ body {
     line-height: 4.5rem;
     color: #000;
 }
+
+/*# sourceMappingURL=main.css.map*/

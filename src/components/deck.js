@@ -1,31 +1,57 @@
-const SUITS = ['♠', '♣', '♥', '♦'];
-const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+import spades from '../img/spades.svg';
+import clubs from '../img/clubs.svg';
+import diamonds from '../img/diamonds.svg';
+import hearts from '../img/hearts.svg';
 
-// merging two arrays of values and suits into one array
-
-const CARDS = VALUES.reduce((result, value) => {
-    for (let suit of SUITS) {
-        result.push({
-            value: value,
-            suit: suit,
-        });
-    }
-    return result;
-}, []);
+// const suitsBackground = {
+//     '♠': spades,
+//     '♣': clubs,
+//     '♥': hearts,
+//     '♦': diamonds,
+// };
 
 export class Deck {
     constructor() {
-        this.cards = CARDS;
+        this.SUITS = ['♠', '♣', '♥', '♦'];
+        this.VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+        this.suitsBackground = {
+            '♠': spades,
+            '♣': clubs,
+            '♥': hearts,
+            '♦': diamonds,
+        };
+        this.cards = this.VALUES.reduce((result, value) => {
+            for (let suit of this.SUITS) {
+                result.push({
+                    value: value,
+                    suit: suit,
+                    html: `
+                    <div data-value=${value} data-suit=${suit} class="card" >
+                        <div class="card__back"></div>
+                        <div class="card__face" style="background: url('${this.suitsBackground[suit]}') center center no-repeat, rgb(255, 255, 255);">
+                            <div class="card__top">    
+                                <div class="card__value">${value}
+                                </div>
+                                <img class="card__suit" src="${this.suitsBackground[suit]}" alt="suit">
+                            </div>
+                            <div class="card__bottom">    
+                                <div class="card__value">${value}
+                                </div>
+                                <img class="card__suit" src="${this.suitsBackground[suit]}" alt="suit">
+                            </div>
+                        </div>
+                    </div>
+                    `,
+                });
+            }
+            return result;
+        }, []);
     }
-
-    // shuffling pile of cards
 
     shuffle() {
         for (let i = this.cards.length - 1; i > 0; i--) {
             const newIndex = Math.floor(Math.random() * (i + 1));
-            //   const oldValue = this.cards[newIndex]
-            //   this.cards[newIndex] = this.cards[i]
-            //   this.cards[i] = oldValue
+
             [this.cards[i], this.cards[newIndex]] = [
                 this.cards[newIndex],
                 this.cards[i],
@@ -34,16 +60,20 @@ export class Deck {
         return this;
     }
 
-    // cutting the array until 3
-    cut() {
-        this.cards = this.cards.slice(0, 3);
+    cut(length = 3) {
+        this.cards = this.cards.slice(0, length);
         return this;
     }
 
-    // duplicating that cutted amount of cards
-
     double() {
         this.cards = [this.cards, ...this.cards].flat();
+        return this;
+    }
+
+    render(element = document.body) {
+        for (let card of this.cards) {
+            element.innerHTML = element.innerHTML += card.html;
+        }
         return this;
     }
 }
